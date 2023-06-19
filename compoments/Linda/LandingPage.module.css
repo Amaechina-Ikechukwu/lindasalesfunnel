@@ -1,0 +1,68 @@
+.landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.moving {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.5) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: -1;
+  animation: movingPattern 10s linear infinite;
+}
+
+@keyframes movingPattern {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+.image {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .image {
+    display: none;
+  }
+}
+/* Feature.module.css */
+
+.featureContainer {
+  position: relative;
+}
+
+/* .pattern1 {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 2px;
+  background-color: #f00; /* Set the color of the lines 
+animation: line-pattern 5s linear infinite; /* Adjust the animation duration as needed 
+}
+
+@keyframes line-pattern {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+} */
