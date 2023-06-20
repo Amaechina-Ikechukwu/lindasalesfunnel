@@ -44,8 +44,8 @@ export default function Buttons(props: NestedButtonProps) {
       sx={{
         backgroundColor: props.color || `${colors.text}`,
         background: props.linear,
-        paddingVertical: props.px,
-        paddingHorizontal: props.py,
+        paddingX: props.px,
+        paddingY: props.py,
         color: props.disabled ? colors.backShade : props.textColor || "white",
         "&:hover": {
           backgroundColor: props.color || `${colors.text}`,

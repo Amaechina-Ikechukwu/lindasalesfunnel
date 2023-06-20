@@ -32,21 +32,21 @@ export default function Bottom(): JSX.Element {
           width={"100%"}
         >
           <Stack
+            spacing={3}
             sx={{
               padding: 6,
               justifyContent: "center",
               backgroundColor: "inherit",
               alignItems: "center",
-              spacing: 3,
             }}
           >
             <Stack
+              spacing={2.7}
+              direction="row"
               sx={{
-                direction: "row",
                 width: "100%",
                 alignItems: "center",
                 justifyContent: "center",
-                spacing: 2.7,
               }}
             >
               <a

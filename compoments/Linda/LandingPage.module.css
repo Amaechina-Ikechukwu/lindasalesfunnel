@@ -44,25 +44,19 @@
 }
 /* Feature.module.css */
 
-.featureContainer {
-  position: relative;
+/* CSS classes for fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* .pattern1 {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 2px;
-  background-color: #f00; /* Set the color of the lines 
-animation: line-pattern 5s linear infinite; /* Adjust the animation duration as needed 
+.fadeinup {
+  animation: fadeInUp 0.5s ease-in-out forwards;
+  opacity: 0; /* Initially set the opacity to 0 */
 }
-
-@keyframes line-pattern {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-} */

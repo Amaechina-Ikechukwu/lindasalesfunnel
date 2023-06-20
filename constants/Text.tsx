@@ -24,7 +24,7 @@ export default function Text(props: NestedTextProps) {
         color: props.color || colors.text,
         fontSize: props.size || 12,
         lineHeight: props.spacing || 2,
-        fontFamily: props.family || "Poppins",
+        fontFamily: "Poppins",
         letterSpacing: 1,
         fontWeight: props.weight || "regular",
         textAlign: props.align || "left",

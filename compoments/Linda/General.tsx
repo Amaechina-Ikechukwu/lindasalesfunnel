@@ -61,8 +61,8 @@ export default function General() {
           sx={{
             backgroundColor: colors.first,
             position: "fixed",
-            zIndex: 1,
             width: "100%",
+            zIndex: 1,
           }}
         >
           <Header />
@@ -70,18 +70,21 @@ export default function General() {
         <Container>
           <Stack spacing={6}>
             <LandingPage />
-            <Feature />
+            <Box sx={{ marginTop: 6 }}>
+              <Feature />
+            </Box>
+
             <LindaSalesProHelps />
             <Testimonials2 />
             <About />
             <AskedQuestions />
           </Stack>
         </Container>
-        <Box sx={{ mt: 10, width: "100%" }}>
-          <Box sx={{ width: "100%", backgroundColor: colors.lightash }}>
+        <Box sx={{ mt: 10 }}>
+          <Box sx={{ backgroundColor: colors.lightash }}>
             <Footer />
           </Box>
-          <Box sx={{ width: "100%", backgroundColor: colors.black }}>
+          <Box sx={{ backgroundColor: colors.black }}>
             <Bottom />
           </Box>
         </Box>

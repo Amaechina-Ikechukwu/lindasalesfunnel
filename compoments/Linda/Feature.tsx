@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import Additional from "../../assets/features/additional-removebg-preview.png";
 import cloud from "../../assets/features/cloud-removebg-preview.png";
 import follow from "../../assets/features/follow-removebg-preview.png";
@@ -10,6 +11,7 @@ import Image, { StaticImageData } from "next/image";
 import { Box, Stack } from "@mui/joy";
 import Text from "@/constants/Text";
 import styles from "./LandingPage.module.css";
+import { Fade, Zoom } from "@mui/material";
 interface Features {
   image: StaticImageData;
   hero: string;
@@ -71,57 +73,99 @@ const features: Features[] = [
     hero: "Additional Services",
     text: "Set up a free lead-generating website and virtual wallet and receive 24/7 tech support",
     description:
-      "leverage the benefits of a free lead-generating website and virtual wallet. Lead-generating website helps businesses attract and capture potential customers, increasing their chances of conversion. Virtual wallet feature enables secure and convenient online transactions, providing a seamless payment experience for customers.  24/7 tech support, ensuring that businesses receive prompt assistance and uninterrupted service.",
+      "Leverage the benefits of a free lead-generating website and virtual wallet. Lead-generating website helps businesses attract and capture potential customers, increasing their chances of conversion. Virtual wallet feature enables secure and convenient online transactions, providing a seamless payment experience for customers.  24/7 tech support, ensuring that businesses receive prompt assistance and uninterrupted service.",
   },
 ];
 
 export default function Feature(): JSX.Element {
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const [isElementVisible, setElementVisible] = useState<boolean>(true);
+  useEffect(() => {
+    const observerOptions: IntersectionObserverInit = {
+      root: null, // Use the viewport as the root element
+      rootMargin: "0px",
+      threshold: 0.2, // Trigger when 20% of the element is visible
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        setElementVisible(entry.isIntersecting);
+      });
+    };
+
+    observerRef.current = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    // Start observing the elements when the component mounts
+    document.querySelectorAll(".fade-on-scroll").forEach((element) => {
+      element.classList.add("fade-hidden");
+      if (observerRef.current) {
+        observerRef.current.observe(element);
+      }
+    });
+
+    // Stop observing the elements when the component unmounts
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
   return (
-    <Box
-      className={`${styles.featureContainer} ${styles.pattern1}`}
-      sx={{ marginTop: 4 }}
-    >
-      <Stack spacing={5}>
+    <Box sx={{ width: "100%" }}>
+      <Stack spacing={10}>
         {features.map((feature, index) => (
-          <>
-            {" "}
-            <Stack
-              direction={index % 2 == 0 ? "row" : "row-reverse"}
-              sx={{ justifyContent: "space-between" }}
-              key={feature.hero}
-            >
-              <Stack sx={{ width: { md: "55%" } }} spacing={2}>
-                <Text
-                  text={feature.hero}
-                  level="h2"
-                  weight="bold"
-                  capital="uppercase"
-                  align={index % 2 !== 0 && "right"}
-                />
-                <Text
-                  text={feature.text}
-                  level="h5"
-                  align={index % 2 !== 0 && "right"}
-                  capital="capitalize"
-                />
-                <Text
-                  text={feature.description}
-                  align={index % 2 !== 0 && "right"}
-                  level="body"
-                  capital="initial"
-                />
-              </Stack>
-              <Image
-                style={{
-                  boxShadow: "0px 0px 168px -25px rgba(143,143,143,0.6)",
+          <Fade in={isElementVisible} timeout={1000} key={feature.hero}>
+            <Box>
+              <Stack
+                spacing={{ xs: 7 }}
+                direction={{
+                  xs: "column-reverse",
+                  md: index % 2 === 0 ? "row" : "row-reverse",
                 }}
-                width={350}
-                height={600}
-                src={feature.image}
-                alt={feature.hero}
-              />
-            </Stack>
-          </>
+                sx={{ justifyContent: "space-between" }}
+                key={feature.hero}
+              >
+                <Stack spacing={2}>
+                  <Text
+                    text={feature.hero}
+                    level="h2"
+                    size={18}
+                    weight="bold"
+                    capital="uppercase"
+                  />
+                  <Text
+                    size={18}
+                    text={feature.text}
+                    level="h5"
+                    capital="capitalize"
+                  />
+                  <Text
+                    text={feature.description}
+                    level="body"
+                    size={14}
+                    capital="initial"
+                  />
+                </Stack>
+
+                <Fade in={isElementVisible} timeout={1000} key={feature.hero}>
+                  <Image
+                    src={feature.image}
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      boxShadow: "0px 0px 168px -25px rgba(143,143,143,0.6)",
+                      backgroundColor: "transparent",
+                    }}
+                    alt={feature.hero}
+                  />
+                </Fade>
+              </Stack>
+            </Box>
+          </Fade>
         ))}
       </Stack>
     </Box>

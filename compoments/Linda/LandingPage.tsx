@@ -105,7 +105,7 @@ export default function LandingPage() {
             flexDirection: "column",
             gap: 3,
             alignItems: "flex-start",
-            width: { md: "60%" },
+            // width: { md: "60%" },
           }}
         >
           <Typography
@@ -143,8 +143,8 @@ export default function LandingPage() {
             with ease, with your phone.
           </Typography>
           <Text
-            size={14}
-            level={"p"}
+            size={16}
+            level={"body"}
             weight="thin"
             spacing={1.8}
             text={
@@ -153,8 +153,8 @@ export default function LandingPage() {
           />
           <Stack>
             <Buttons
-              px={7}
-              py={3}
+              px={6}
+              py={2}
               // onClick={() => props.contactCall()}
               radius={7}
               color={colors.linda}
@@ -182,12 +182,12 @@ export default function LandingPage() {
         <Box>
           <Image
             src={IntroImage}
-            width={500}
             style={{
+              width: "100%",
+              height: "auto",
               backgroundColor: "transparent",
               transform: `rotateX(${gyroX}deg) rotateY(${gyroY}deg)`,
             }}
-            height={500}
             alt="LindaSalesProp"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
