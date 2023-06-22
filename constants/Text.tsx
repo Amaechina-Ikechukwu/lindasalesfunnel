@@ -34,7 +34,9 @@ export default function Text(props: NestedTextProps) {
     textTransform: props.capital || undefined,
   }}
 >
+{props.text}
   {props.children}
+
 </Typography>
   );
 }
