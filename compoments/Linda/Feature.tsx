@@ -116,17 +116,17 @@ export default function Feature(): JSX.Element {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Stack spacing={10}>
+      <Stack sx={{gap:12}} spacing={10}>
         {features.map((feature, index) => (
           <Fade in={isElementVisible} timeout={1000} key={feature.hero}>
             <Box>
               <Stack
-                spacing={{ xs: 7 }}
+                
                 direction={{
                   xs: "column-reverse",
                   md: index % 2 === 0 ? "row" : "row-reverse",
                 }}
-                sx={{ justifyContent: "space-between" }}
+                sx={{ justifyContent: "space-between",gap:4 }}
                 key={feature.hero}
               >
                 <Stack spacing={2}>

@@ -1,12 +1,14 @@
 import * as React from "react";
 import Button from "@mui/joy/Button";
 import Modal from "@mui/joy/Modal";
-import ModalClose from "@mui/joy/ModalClose";
-import Typography from "@mui/joy/Typography";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import Sheet from "@mui/joy/Sheet";
+import { Stack, IconButton } from "@mui/joy";
+import colors from "./Colors";
+
 interface NestedModalProps {
   open?: boolean;
-  handleClose?: () => void;
+  onClose?: () => void;
   children: React.ReactNode;
 }
 export default function BasicModal(props: NestedModalProps) {
@@ -17,30 +19,37 @@ export default function BasicModal(props: NestedModalProps) {
       aria-labelledby="modal-title"
       aria-describedby="modal-desc"
       open={props.open || false}
-      onClose={() => props.handleClose}
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      onClose={() => props.onClose()}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        border: 0,
+      }}
     >
-      <Sheet
-        variant="outlined"
-        sx={{
-          maxWidth: 500,
-          borderRadius: "md",
-          p: 3,
-          boxShadow: "lg",
-        }}
-      >
-        <ModalClose
+      <>
+        <Sheet
           variant="outlined"
           sx={{
-            top: "calc(-1/4 * var(--IconButton-size))",
-            right: "calc(-1/4 * var(--IconButton-size))",
-            boxShadow: "0 2px 12px 0 rgba(0 0 0 / 0.2)",
-            borderRadius: "50%",
-            bgcolor: "background.body",
+            width: { xs: "95%", md: "60%" },
+            borderRadius: "md",
+            p: 1,
+            boxShadow: "lg",
           }}
-        />
-        {props.children}
-      </Sheet>
+        >
+          <Stack spacing={3}>
+            <Stack sx={{ display: "flex", alignItems: "flex-end" }}>
+              <IconButton
+                sx={{ backgroundColor: "inherit" ,'&:hover': { backgroundColor: colors.greenBackShade }}}
+                onClick={() => props.onClose()}
+              >
+                <CloseOutlinedIcon sx={{ color: colors.text }} />
+              </IconButton>
+            </Stack>
+            <Stack sx={{ padding: 3,maxHeight:'70vh',overflowY:'auto' }}>{props.children}</Stack>
+          </Stack>
+        </Sheet>
+      </>
     </Modal>
   );
 }

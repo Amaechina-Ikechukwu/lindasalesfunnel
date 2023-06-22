@@ -55,40 +55,42 @@ const theme = extendTheme({
 const materialTheme = materialExtendTheme();
 export default function General() {
   return (
-    <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
-      <JoyCssVarsProvider theme={theme}>
-        <Box
-          sx={{
-            backgroundColor: colors.first,
-            position: "fixed",
-            width: "100%",
-            zIndex: 1,
-          }}
-        >
-          <Header />
-        </Box>
-        <Container>
-          <Stack spacing={6}>
-            <LandingPage />
-            <Box sx={{ marginTop: 6 }}>
-              <Feature />
-            </Box>
+    // <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
+    //   <JoyCssVarsProvider theme={theme}>
+    <>
+      <Box
+        sx={{
+          backgroundColor: colors.first,
+          position: "fixed",
+          width: "100%",
+          zIndex: 1,
+        }}
+      >
+        <Header />
+      </Box>
+      <Container>
+        <Stack spacing={10}>
+          <LandingPage />
+          <Box sx={{ marginTop: 6 }}>
+            <Feature />
+          </Box>
 
-            <LindaSalesProHelps />
-            <Testimonials2 />
-            <About />
-            <AskedQuestions />
-          </Stack>
-        </Container>
-        <Box sx={{ mt: 10 }}>
-          <Box sx={{ backgroundColor: colors.lightash }}>
-            <Footer />
-          </Box>
-          <Box sx={{ backgroundColor: colors.black }}>
-            <Bottom />
-          </Box>
+          <LindaSalesProHelps />
+          <Testimonials2 />
+          <About />
+          <AskedQuestions />
+        </Stack>
+      </Container>
+      <Box sx={{ mt: 10 }}>
+        <Box sx={{ backgroundColor: colors.lightash }}>
+          <Footer />
         </Box>
-      </JoyCssVarsProvider>
-    </MaterialCssVarsProvider>
+        <Box sx={{ backgroundColor: colors.black }}>
+          <Bottom />
+        </Box>
+      </Box>
+    </>
+    //   </JoyCssVarsProvider>
+    // </MaterialCssVarsProvider>
   );
 }

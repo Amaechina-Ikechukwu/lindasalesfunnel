@@ -10,12 +10,15 @@ import { useEffect, useState } from "react";
 import { keyframes } from "@emotion/react";
 import styles from "./LandingPage.module.css"; // Import the CSS file for styling
 import { whatsappimg } from "@/constants/whatsappimg";
+import BasicModal from "@/constants/Modal";
+import FirstStory from "./story/FirstStory";
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 
 export default function LandingPage() {
   const [gyroX, setGyroX] = useState(0);
   const [gyroY, setGyroY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const textTransition = keyframes`
   0%, 100% {
     color: #FFFF00;
@@ -103,26 +106,26 @@ export default function LandingPage() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: 3,
+            gap: 5,
             alignItems: "flex-start",
             // width: { md: "60%" },
           }}
         >
           <Typography
-            level="h3"
-            sx={{ lineHeight: 2.3, fontFamily: "Poppins", textAlign: "left" }}
-          >
+            level="h2"
+            sx={{ lineHeight: 1.5, fontFamily: "Poppins", textAlign: "left" }}
+           >
             {" "}
             <Typography
-              level="h2"
-              sx={{
-                color: colors.offwhite,
-                fontWeight: "regular",
-                textAlign: "left",
-                padding: 1,
-                borderRadius: 10,
-                backgroundColor: "black",
-              }}
+              
+              // sx={{
+              //   color: colors.offwhite,
+              //   fontWeight: "regular",
+              //   textAlign: "left",
+              //   padding: 1,
+              //   borderRadius: 10,
+              //   backgroundColor: "black",
+              // }}
             >
               Convert leads
             </Typography>{" "}
@@ -151,35 +154,39 @@ export default function LandingPage() {
               "Organize your leads in one place and communicate with them easily through popular channels like WhatsApp, phone calls, SMS, and emails. Turn more leads into paying customers, from your phone using the LindaSalesPro App."
             }
           />
-          <Stack>
+          <Stack direction={{ sm: "row" }} sx={{alignItems:'center',gap:3,width:'100%'}} spacing={5}>
             <Buttons
-              px={6}
+              px={6} width={{xs:'100%'}}
               py={2}
               // onClick={() => props.contactCall()}
-              radius={7}
-              color={colors.linda}
+              radius={3}
+              color={colors.linda}    text={"Sign Up Now - Its Free"}
               textColor={colors.first}
-              text={
-                <Text
-                  size={14}
-                  level={"h4"}
-                  color={colors.first}
-                  spacing={1.8}
-                  text={"Sign Up Now - Its Free"}
-                />
-              }
-              capital={"capitalize"}
+                            capital={"capitalize"}
               icon={<OpenInNewOutlinedIcon sx={{ color: colors.first }} />}
               shadow="0px 0px 116px -11px rgba(255,208,0,1)"
               // linear={`linear-gradient(to right bottom, #ffd000, ${colors.linda})`}
             />
+            <Buttons
+              px={10} text={'See Stories'}
+              py={2} width={{xs:'100%'}}
+              onClick={() => setOpenModal(true)}
+              radius={3}
+              color={'transparent'}
+              textColor={colors.black}
+              furtherStyles={{ border: 1, borderColor: colors.text }}
+              
+              capital={"capitalize"}
+              icon={<MenuBookOutlinedIcon fontSize='large' sx={{ color: colors.text,fontSize:'large' }} />}
+              shadow="0px 0px 116px -11px rgba(255,255,0,1)"
+              // linear={`linear-gradient(to right bottom, #ffd000, ${colors.linda})`}
+            />
           </Stack>
-          {/* <style>{keyframesStyle}</style>
-          <div style={orbitStyle}>
-            <PhoneIphoneOutlinedIcon sx={{ fontSize: 40 }} />
-          </div> */}
+          <BasicModal open={openModal} onClose={() => setOpenModal(false)}>
+            <FirstStory />
+          </BasicModal>
         </Box>
-        <Box>
+        <Box sx={{marginTop:{xs:5,md:0}}}>
           <Image
             src={IntroImage}
             style={{

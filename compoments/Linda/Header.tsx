@@ -116,7 +116,7 @@ export default function Header(): JSX.Element {
         <Box
           sx={{
             display: { xs: "none", md: "flex" },
-            justifyContent: "flex-end",
+            justifyContent: "flex-end",gap:2
           }}
         >
           <Stack
@@ -124,7 +124,7 @@ export default function Header(): JSX.Element {
               display: "flex",
               flexDirection: "row",
               width: "100%",
-              alignItems: "center",
+              alignItems: "center",gap:1
             }}
           >
             <Box>
@@ -173,7 +173,7 @@ export default function Header(): JSX.Element {
           <Buttons
             textColor={colors.first}
             width="100%"
-            radius={5}
+            radius={2} py={1} px={2}
             target="_blank"
             href={
               "https://play.google.com/store/apps/details?id=online.priceplan"

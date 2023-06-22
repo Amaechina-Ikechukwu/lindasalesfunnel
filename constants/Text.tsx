@@ -10,7 +10,7 @@ type NestedTextProps = {
   children?: React.ReactNode;
   spacing?: number;
   family?: string;
-  shadow?: boolean;
+  shadow?: boolean | string;
   align?: string | any;
   weight?: string;
   capital?: any;
@@ -22,13 +22,15 @@ export default function Text(props: NestedTextProps) {
       level={props.level}
       sx={{
         color: props.color || colors.text,
-        fontSize: props.size || 12,
+        fontSize: props.size,
         lineHeight: props.spacing || 2,
         fontFamily: "Poppins",
         letterSpacing: 1,
         fontWeight: props.weight || "regular",
         textAlign: props.align || "left",
-        textShadow: props.shadow ? "0px 0px 70px 0px rgba(20,19,20,1)" : "",
+        textShadow: props.shadow
+          ? props.shadow || "0px 0px 70px 0px rgba(20,19,20,1)"
+          : "",
         textTransform: props.capital || undefined,
       }}
     >

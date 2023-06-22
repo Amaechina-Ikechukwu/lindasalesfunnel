@@ -1,8 +1,8 @@
 import * as React from "react";
-import Button, { ButtonProps } from "@mui/joy/Button";
+import Button, { ButtonProps } from "@mui/material/Button";
 import colors from "./Colors";
 import { Box, extendTheme } from "@mui/joy";
-
+import styles from "./styles.module.css";
 interface NestedButtonProps {
   text?: string | React.ReactNode;
   color?: string;
@@ -24,23 +24,49 @@ interface NestedButtonProps {
   href?: string;
   target?: string;
   disabled?: boolean;
+  furtherStyles?: any;
+  onClick?: () => void;
 }
 
 export default function Buttons(props: NestedButtonProps) {
   const [isClicked, setIsClicked] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const handleClick = () => {
     setIsClicked(true);
   };
 
+  React.useEffect(() => {
+    const buttonElement = buttonRef.current;
+
+    if (buttonElement && isClicked) {
+      const rect = buttonElement.getBoundingClientRect();
+      const x = rect.left + window.scrollX;
+      const y = rect.top + window.scrollY;
+
+      const shimmer = document.createElement("div");
+      shimmer.style.left = `${x}px`;
+      shimmer.style.top = `${y}px`;
+      shimmer.classList.add(styles.shimmer);
+
+      document.body.appendChild(shimmer);
+
+      setTimeout(() => {
+        setIsClicked(false);
+        document.body.removeChild(shimmer);
+      }, 1000);
+    }
+  }, [isClicked]);
+
   return (
     <Button
+      // ref={buttonRef}
       href={props.href}
       target={props.target}
-      onClick={handleClick}
+      onClick={props.onClick}
       fullWidth={props.fwidth || false}
       size={(props.size as ButtonProps["size"]) || "md"}
-      endDecorator={props.icon}
+      endIcon={props.icon}
       sx={{
         backgroundColor: props.color || `${colors.text}`,
         background: props.linear,
@@ -61,15 +87,13 @@ export default function Buttons(props: NestedButtonProps) {
         borderRadius: props.radius || undefined,
         width: props.width,
         height: props.height,
-        // border: props.border,
-        // borderColor: props.borderColor,
         boxShadow: props.shadow,
-        // textAlign: props.align,
         textTransform: props.capital || "none",
-        // textDecoration: props.decor,
+        ...props.furtherStyles,
       }}
     >
       {props.text}
+      {props.children}
     </Button>
   );
 }
