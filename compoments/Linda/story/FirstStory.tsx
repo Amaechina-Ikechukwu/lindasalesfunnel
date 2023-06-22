@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Stack, IconButton } from "@mui/material";
+import { Box, Stack, IconButton } from "@mui/joy";
 import Text from "@/constants/Text";
 import Buttons from "@/constants/Buttons";
 import colors from "@/constants/Colors";
@@ -24,7 +24,7 @@ export default function FirstStory() {
   // state management
   const [step, setStep] = useState<number>(0);
 
-  const handleStepChange = (step) => {
+  const handleStepChange = (step:number) => {
     setStep(step);
   };
   const handleNextStepChange=()=>{
@@ -126,7 +126,7 @@ export default function FirstStory() {
           <IconButton onClick={()=>handlePrevStepChange()} sx={{ '&:hover': { backgroundColor: colors.greenBackShade } }}>
             <ChevronLeftOutlinedIcon />
           </IconButton>
-          <IconButton onClick={() =>handleNextStepChange()} sx={{ backgroundColor:step==1 && colors.greenBackShade,'&:hover': { backgroundColor: colors.greenBackShade } }}>
+          <IconButton onClick={() =>handleNextStepChange()} sx={{'&:hover': { backgroundColor: colors.greenBackShade }, backgroundColor: step === 1 ? colors.greenBackShade : undefined, }}>
             <ChevronRightOutlinedIcon />
           </IconButton>
         </Stack>

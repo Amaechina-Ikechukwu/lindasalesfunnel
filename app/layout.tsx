@@ -20,9 +20,6 @@ export const metadata = {
     "lead conversion",
     "Lead conversion",
   ],
-  openGraph: {
-    images: "/Linda.png",
-  },
 };
 
 export default function RootLayout({

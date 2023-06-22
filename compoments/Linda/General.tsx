@@ -55,9 +55,9 @@ const theme = extendTheme({
 const materialTheme = materialExtendTheme();
 export default function General() {
   return (
-    // <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
-    //   <JoyCssVarsProvider theme={theme}>
-    <>
+    <MaterialCssVarsProvider theme={{ [MATERIAL_THEME_ID]: materialTheme }}>
+      <JoyCssVarsProvider theme={theme}>
+    
       <Box
         sx={{
           backgroundColor: colors.first,
@@ -89,8 +89,8 @@ export default function General() {
           <Bottom />
         </Box>
       </Box>
-    </>
-    //   </JoyCssVarsProvider>
-    // </MaterialCssVarsProvider>
+    
+       </JoyCssVarsProvider>
+     </MaterialCssVarsProvider>
   );
 }

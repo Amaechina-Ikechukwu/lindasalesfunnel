@@ -13,13 +13,18 @@ interface NestedModalProps {
 }
 export default function BasicModal(props: NestedModalProps) {
   const [open, setOpen] = React.useState<boolean>(false);
+   const handleClose = () => {
+    if (props.onClose) {
+      props.onClose();
+    }
+  };
   return (
     <Modal
       component="div"
       aria-labelledby="modal-title"
       aria-describedby="modal-desc"
       open={props.open || false}
-      onClose={() => props.onClose()}
+      onClose={handleClose}
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -41,7 +46,7 @@ export default function BasicModal(props: NestedModalProps) {
             <Stack sx={{ display: "flex", alignItems: "flex-end" }}>
               <IconButton
                 sx={{ backgroundColor: "inherit" ,'&:hover': { backgroundColor: colors.greenBackShade }}}
-                onClick={() => props.onClose()}
+                onClick={handleClose}
               >
                 <CloseOutlinedIcon sx={{ color: colors.text }} />
               </IconButton>

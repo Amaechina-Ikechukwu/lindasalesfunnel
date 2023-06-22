@@ -9,9 +9,7 @@ const inter = Poppins({
 
 export default function Page() {
   return (
-    <main className={inter.className}>
-      {" "}
-      <General />
+    <main className={inter.className}>      <General />
     </main>
   );
 }

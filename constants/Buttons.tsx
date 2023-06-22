@@ -3,12 +3,13 @@ import Button, { ButtonProps } from "@mui/material/Button";
 import colors from "./Colors";
 import { Box, extendTheme } from "@mui/joy";
 import styles from "./styles.module.css";
+
 interface NestedButtonProps {
   text?: string | React.ReactNode;
   color?: string;
   size?: string;
   fwidth?: boolean;
-  width?: string;
+  width?: { [key: string]: string } | string;
   textColor?: string;
   px?: number;
   py?: number;
@@ -61,11 +62,12 @@ export default function Buttons(props: NestedButtonProps) {
   return (
     <Button
       // ref={buttonRef}
-      href={props.href}
-      target={props.target}
+      component="a"
       onClick={props.onClick}
+       href={props.href} // Pass href prop
+      target={props.target} // Pass target prop
       fullWidth={props.fwidth || false}
-      size={(props.size as ButtonProps["size"]) || "md"}
+      // size={(props.size as ButtonProps["size"]) || "md"}
       endIcon={props.icon}
       sx={{
         backgroundColor: props.color || `${colors.text}`,
