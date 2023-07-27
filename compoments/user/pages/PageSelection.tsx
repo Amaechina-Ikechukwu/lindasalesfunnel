@@ -33,7 +33,7 @@ export default function PageSelection({ pages, userid }: any) {
         uuid: userid,
       };
       try {
-        await axios.post(`${process.env.PAGS_DEV_LINK}/subscribe`, data, {
+        await axios.post(`https://keys-wears.onrender.com/subscribe`, data, {
           headers: {
             "Content-Type": "application/json",
           },
