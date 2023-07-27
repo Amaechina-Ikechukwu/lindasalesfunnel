@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { Box, Container, FormGroup, Stack, Typography } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
@@ -7,13 +7,13 @@ import colors from "@/constants/Colors";
 import Buttons from "@/constants/Buttons";
 import axios from "axios";
 
-export default function PageSelection({ pages, userid }:any) {
+export default function PageSelection({ pages, userid }: any) {
   const [selectedPages, setSelectedPages] = useState<any[]>([]);
   const [sending, setSending] = useState(false);
   const [hasError, setHasError] = useState(false); // State to track error
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const page = pages.find((page:any) => page.id === event.target.value);
+    const page = pages.find((page: any) => page.id === event.target.value);
     if (page) {
       setSelectedPages((prevSelectedPages) =>
         prevSelectedPages.some((p) => p.id === page.id)
@@ -33,7 +33,7 @@ export default function PageSelection({ pages, userid }:any) {
         uuid: userid,
       };
       try {
-        await axios.post(`${process.env.NEXT_PUBLIC_PAGS_DEV_LINK}/subscribe`, data, {
+        await axios.post(`${process.env.PAGS_DEV_LINK}/subscribe`, data, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -57,18 +57,26 @@ export default function PageSelection({ pages, userid }:any) {
     <Stack sx={{ alignItems: "center", justifyContent: "center" }}>
       <Container maxWidth="sm">
         <Stack spacing={2}>
-          <Typography variant="h5" sx={{ textAlign: "center", color: colors.text }}>
+          <Typography
+            variant="h5"
+            sx={{ textAlign: "center", color: colors.text }}
+          >
             Reconfirm pages you want us to access
           </Typography>
 
           <FormGroup>
             {pages && pages.length > 0 ? (
-              pages.map((page:any) => (
-                <FormControlLabel sx={{ marginTop: 2 }} key={page.id} control={<Checkbox
-                  checked={selectedPages.some((p) => p.id === page.id)}
-                  onChange={handleChange}
-                  value={page.id}
-                />}
+              pages.map((page: any) => (
+                <FormControlLabel
+                  sx={{ marginTop: 2 }}
+                  key={page.id}
+                  control={
+                    <Checkbox
+                      checked={selectedPages.some((p) => p.id === page.id)}
+                      onChange={handleChange}
+                      value={page.id}
+                    />
+                  }
                   label={page.name}
                 />
               ))
