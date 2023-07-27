@@ -42,7 +42,7 @@ export default function TextInput(props: NestedTextProps): any {
   return (
     <Input
       sx={{
-        height: 40,
+        height: 50,
         width: props.width || "100%",
         "&.Mui-focused ": {
           fieldset: {
@@ -50,7 +50,7 @@ export default function TextInput(props: NestedTextProps): any {
           },
         },
       }}
-      type={values.showPassword ? "password" : props.type || "text"}
+      type={values.showPassword ? "password" : props.type || "text"} name='props.name'
       placeholder={props.placeholder || "Type in here…"}
       error={props.error}
       variant={"soft"}

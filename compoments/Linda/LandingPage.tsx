@@ -143,7 +143,7 @@ export default function LandingPage() {
             >
               Paying Customers
             </Typography>{" "}
-            with ease, with your phone.
+            with ease, from one app.
           </Typography>
           <Text
             size={16}
@@ -155,17 +155,17 @@ export default function LandingPage() {
             }
           />
           <Stack direction={{ sm: "row" }} sx={{alignItems:'center',gap:3,width:'100%'}} spacing={5}>
-            <Buttons
+            <Buttons href='https://play.google.com/store/apps/details?id=online.priceplan' target='/blank'  disabled={false}
               px={6} width={{xs:'100%'}}
               py={2}
-              // onClick={() => props.contactCall()}
+              
               radius={3}
               color={colors.linda}    text={"Sign Up Now - Its Free"}
               textColor={colors.first}
                             capital={"capitalize"}
               icon={<OpenInNewOutlinedIcon sx={{ color: colors.first }} />}
               shadow="0px 0px 116px -11px rgba(255,208,0,1)"
-              // linear={`linear-gradient(to right bottom, #ffd000, ${colors.linda})`}
+              linear={`linear-gradient(to right bottom, #ffd000, ${colors.linda})`}
             />
             <Buttons
               px={10} text={'See Stories'}

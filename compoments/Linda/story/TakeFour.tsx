@@ -13,7 +13,7 @@ export default function TakeFour() {
         <Stack spacing={5}>
           <Text
             level="body" size={14}
-            text="I dont need to manually account for customers, I am provided with leads generate from the link I shared or pull from an Excel file "
+            text="I don't need to manually account for customers; I am provided with leads generated from the link I shared or pulled from an Excel file. "
           />
           <Stack sx={{alignItems:'center',justifyContent:'center',backgroundColor:colors.first}}><Image
             src={Lead}

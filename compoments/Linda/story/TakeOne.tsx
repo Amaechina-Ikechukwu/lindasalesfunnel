@@ -12,7 +12,7 @@ export default function FirstTake() {
     
         <Stack spacing={5}>
           <Text
-            text="My business needs to take online to reach more customer and to generate leads, manage leads and convert leads,with my phone."
+            text="My business needs to go online to reach more customers, generate leads, manage leads, and convert them using my phone."
             level="body"
             size={14}
           />

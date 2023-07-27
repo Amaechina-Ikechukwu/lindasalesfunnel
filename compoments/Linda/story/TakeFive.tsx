@@ -15,7 +15,7 @@ export default function TakeFive() {
         <Stack sx={{paddingY:5}} spacing={5}>
           <Text
             level="body" size={14}
-            text="As soon as lead is generated, i get instant notification. I have the ability to keep in touch will potential customer and then comes the sounds of credit alerts. "
+            text="As soon as a lead is generated, I receive an instant notification. I have the ability to stay in touch with potential customers, and then the sound of credit alerts follows. "
           />
           <Stack sx={{alignItems:'center',justifyContent:'center',backgroundColor:colors.first}}><Image
             src={Notification}

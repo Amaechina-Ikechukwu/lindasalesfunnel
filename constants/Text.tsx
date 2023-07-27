@@ -20,13 +20,13 @@ type NestedTextProps = {
 
 export default function Text(props: NestedTextProps) {
   return (
-   <Typography
+   <Typography className='font-poppins'
   level={props.level}
   sx={{
     color: props.color || colors.text,
     fontSize: props.size,
     lineHeight: props.spacing || 2,
-    fontFamily: "Poppins",
+    
     letterSpacing: 1,
     fontWeight: props.weight || "regular",
     textAlign: props.align || "left",

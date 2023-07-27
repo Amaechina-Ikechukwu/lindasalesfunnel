@@ -1,0 +1,25 @@
+{
+  "cssImports": {
+    "C:\\Users\\LENOVO\\Work\\linda.n\\app\\page.tsx": [
+      "C:\\Users\\LENOVO\\Work\\linda.n\\node_modules\\next\\font\\google\\target.css?{\"path\":\"app\\\\page.tsx\",\"import\":\"Poppins\",\"arguments\":[{\"weight\":[\"100\",\"200\",\"300\",\"400\",\"500\",\"600\",\"700\",\"800\",\"900\"],\"subsets\":[\"latin\",\"devanagari\",\"latin-ext\"],\"preload\":false}],\"variableName\":\"inter\"}",
+      "C:\\Users\\LENOVO\\Work\\linda.n\\compoments\\Linda\\LandingPage.module.css"
+    ],
+    "C:\\Users\\LENOVO\\Work\\linda.n\\app\\layout.tsx": [
+      "C:\\Users\\LENOVO\\Work\\linda.n\\node_modules\\next\\font\\google\\target.css?{\"path\":\"app\\\\layout.tsx\",\"import\":\"Poppins\",\"arguments\":[{\"weight\":[\"100\",\"200\",\"300\",\"400\",\"500\",\"600\",\"700\",\"800\",\"900\"],\"subsets\":[\"latin\",\"devanagari\",\"latin-ext\"],\"preload\":false}],\"variableName\":\"inter\"}",
+      "C:\\Users\\LENOVO\\Work\\linda.n\\app\\globals.css"
+    ]
+  },
+  "cssModules": {
+    "C:\\Users\\LENOVO\\Work\\linda.n\\app\\page": [
+      "C:\\Users\\LENOVO\\Work\\linda.n\\node_modules\\next\\font\\google\\target.css?{\"path\":\"app\\\\page.tsx\",\"import\":\"Poppins\",\"arguments\":[{\"weight\":[\"100\",\"200\",\"300\",\"400\",\"500\",\"600\",\"700\",\"800\",\"900\"],\"subsets\":[\"latin\",\"devanagari\",\"latin-ext\"],\"preload\":false}],\"variableName\":\"inter\"}",
+      "C:\\Users\\LENOVO\\Work\\linda.n\\app\\globals.css",
+      "C:\\Users\\LENOVO\\Work\\linda.n\\node_modules\\next\\font\\google\\target.css?{\"path\":\"app\\\\layout.tsx\",\"import\":\"Poppins\",\"arguments\":[{\"weight\":[\"100\",\"200\",\"300\",\"400\",\"500\",\"600\",\"700\",\"800\",\"900\"],\"subsets\":[\"latin\",\"devanagari\",\"latin-ext\"],\"preload\":false}],\"variableName\":\"inter\"}",
+      "C:\\Users\\LENOVO\\Work\\linda.n\\compoments\\Linda\\LandingPage.module.css"
+    ],
+    "C:\\Users\\LENOVO\\Work\\linda.n\\app\\login\\page": [
+      "C:\\Users\\LENOVO\\Work\\linda.n\\app\\globals.css",
+      "C:\\Users\\LENOVO\\Work\\linda.n\\node_modules\\next\\font\\google\\target.css?{\"path\":\"app\\\\layout.tsx\",\"import\":\"Poppins\",\"arguments\":[{\"weight\":[\"100\",\"200\",\"300\",\"400\",\"500\",\"600\",\"700\",\"800\",\"900\"],\"subsets\":[\"latin\",\"devanagari\",\"latin-ext\"],\"preload\":false}],\"variableName\":\"inter\"}"
+    ],
+    "C:\\Users\\LENOVO\\Work\\linda.n\\app\\[business]\\page": []
+  }
+}

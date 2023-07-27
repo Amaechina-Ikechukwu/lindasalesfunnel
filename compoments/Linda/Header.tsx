@@ -113,7 +113,7 @@ export default function Header(): JSX.Element {
             className={!isSmallScreen ? styles.image : styles.hidden}
           />
         </Stack>
-        <Box
+        {/*<Box
           sx={{
             display: { xs: "none", md: "flex" },
             justifyContent: "flex-end",gap:2
@@ -297,7 +297,7 @@ export default function Header(): JSX.Element {
               </Box>
             </Stack>
           </SwipeableDrawer>
-        </Box>
+        </Box>*/}
       </Box>
     </Container>
   );

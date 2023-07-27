@@ -1,19 +1,52 @@
-import BusinessPage from "../../compoments/business/home/Business";
-async function getBusiness(business: string) {
-  const res = await fetch(`${process.env.DEV_LINK}/${business}/profile`);
 
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+import BusinessPage from "@/compoments/business/home/Business";
+import { getBusiness } from '@/utils/getBusiness';
+import { getBusinessOffers } from '@/utils/getBusinessOffers';
+import { Metadata, ResolvingMetadata } from 'next';
 
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
+type Props = {
+  params: { business: string };
+};
 
-  return res.json();
+export async function generateMetadata(
+  { params}: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const business = params.business;
+
+  // fetch data
+  const product = await getBusiness(params.business);
+
+  return {
+    title: product?.data?.business_name,
+    description: product?.data?.business_description,
+    openGraph: {
+      images: [
+        {
+          url: product?.data?.business_logo,
+         
+        },
+      ],
+    },
+    robots: {
+      index: false,
+      follow: true,
+      nocache: true,
+      googleBot: {
+        index: true,
+        follow: false,
+        noimageindex: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+  };
 }
-export default function Page({ params }: { params: { business: "string" } }) {
-  const business = getBusiness(params.business);
-  return <BusinessPage business={business} />;
+
+export default async function Page({ params }: { params: { business: string } }) {
+  // const business = await getBusiness(params.business);
+  // const businessOffers = await getBusinessOffers(business?.data?.business_url)
+  // return <BusinessPage business={business} businessOffers={businessOffers} />;
 }

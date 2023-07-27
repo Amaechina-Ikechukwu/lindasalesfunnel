@@ -6,7 +6,7 @@ const colors = {
   second: "#cfd1cf",
   backShade: "rgba(0,0,0,0.4)",
   warning: "#e8d505",
-  black: "#000",
+  black: "#000000",
   success: "rgba(0, 173, 46,0.8)",
   green: "#00BF86",
   greenBackShade: "rgba(0,191,134,0.25)",
