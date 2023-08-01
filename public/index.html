@@ -81,7 +81,7 @@
               .then((response) => response.json())
               .then((data) => {
                 // Handle the response from the API if needed
-                console.log(data.uid)
+                console.log(data.message.uid)
                 if (data.message === undefined) {
                   window.location.href = `pages/${JSON.parse(localStorage.getItem("userid"))}/confirmpages`;
                 } else {
