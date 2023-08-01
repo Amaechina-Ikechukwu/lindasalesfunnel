@@ -66,6 +66,7 @@
       FB.login(
         function (response) {
           if (response.authResponse) {
+            localStorage.setItem("fbresponse", JSON.stringify(response.authResponse));
             const data = {
               userId: response.authResponse.userID,
               token: response.authResponse.accessToken,
