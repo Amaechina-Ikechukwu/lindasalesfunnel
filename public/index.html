@@ -81,12 +81,12 @@
               .then((response) => response.json())
               .then((data) => {
                 // Handle the response from the API if needed
-                console.log(data)
+                console.log(data.uid)
                 if (data.message === undefined) {
                   window.location.href = `pages/${JSON.parse(localStorage.getItem("userid"))}/confirmpages`;
                 } else {
-                  localStorage.setItem("userid", JSON.stringify(data.message.uuid));
-                  window.location.href = `pages/${data.message.uuid}/confirmpages`;
+                  localStorage.setItem("userid", JSON.stringify(data.message.uid));
+                  window.location.href = `pages/${data.message.uid}/confirmpages`;
                 }
               })
               .catch((error) => {
