@@ -69,7 +69,7 @@
             const data = {
               userId: response.authResponse.userID,
               token: response.authResponse.accessToken,
-              uuid: JSON.parse(localStorage.getItem("userid")) && JSON.parse(localStorage.getItem("userid")),
+              uuid: JSON.parse(localStorage.getItem("usertoken")) && JSON.parse(localStorage.getItem("usertoken")),
             };
             fetch("https://keys-wears.onrender.com/login", {
               method: "POST",
@@ -81,12 +81,12 @@
               .then((response) => response.json())
               .then((data) => {
                 // Handle the response from the API if needed
-                console.log(data.message)
+                console.log(data.message.usertoken)
                 if (data.message === undefined) {
-                  window.location.href = `pages/${JSON.parse(localStorage.getItem("userid"))}/confirmpages`;
+                  window.location.href = `pages/${JSON.parse(localStorage.getItem("usertoken"))}/confirmpages`;
                 } else {
-                  localStorage.setItem("userid", JSON.stringify(data.message));
-                  window.location.href = `pages/${data.message}/confirmpages`;
+                  localStorage.setItem("usertoken", JSON.stringify(data.message.usertoken));
+                  window.location.href = `pages/${data.message.usertoken}/confirmpages`;
                 }
               })
               .catch((error) => {
