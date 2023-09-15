@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className={inter.className}>    
-      {/*<General />*/}
+      <General />
     </main>
   );
 }

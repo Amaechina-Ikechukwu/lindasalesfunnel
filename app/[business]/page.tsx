@@ -46,7 +46,7 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params }: { params: { business: string } }) {
-  // const business = await getBusiness(params.business);
-  // const businessOffers = await getBusinessOffers(business?.data?.business_url)
-  // return <BusinessPage business={business} businessOffers={businessOffers} />;
+  const business = await getBusiness(params.business);
+  const businessOffers = await getBusinessOffers(business?.data?.business_url)
+  return <BusinessPage business={business} businessOffers={businessOffers} />;
 }

@@ -1,3 +1,4 @@
+'use client'
 import { Box, Container, Grow, Stack } from "@mui/material";
 import Text from "../../../constants/Text";
 import colors from "../../../constants/Colors";
@@ -67,7 +68,7 @@ export default function BusinessPage({ business, businessOffers }: Props,props:a
                     }}
                   >
                     {/* Pass businessOffers to the ContactBusiness component */}
-                    {/*<ContactBusiness businessOffers={props.businessOffers} />*/}
+                    <ContactBusiness businessOffers={props.businessOffers} />
                   </Stack>
                 </Stack>
               </Stack>
