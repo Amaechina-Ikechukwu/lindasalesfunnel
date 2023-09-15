@@ -68,7 +68,7 @@ export default function BusinessPage({ business, businessOffers }: Props,props:a
                     }}
                   >
                     {/* Pass businessOffers to the ContactBusiness component */}
-                    <ContactBusiness businessOffers={props.businessOffers} />
+                    
                   </Stack>
                 </Stack>
               </Stack>
