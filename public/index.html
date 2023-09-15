@@ -32,7 +32,7 @@
         <!-- Custom Facebook login button -->
         <button
           id="fbLoginButton"
-          class="bg-blue-500 w-full text-white rounded-sm shadow-md capital px-2 py-4 drop-shadow-xl hover:drop-shadow-xl hover:scale-105 active:scale-95 scale-100 hover:transition ease-in-out delay-50"
+          class="bg-green-500 w-full text-white rounded-sm shadow-md capital px-2 py-4 drop-shadow-xl hover:drop-shadow-xl hover:scale-105 active:scale-95 scale-100 hover:transition ease-in-out delay-50"
         >
           Sign Up With Facebook
         </button>
@@ -42,7 +42,7 @@
 
   <!-- JavaScript to handle Facebook login -->
   <script>
-    window.fbAsyncInit = function () {
+  window.fbAsyncInit = function () {
       FB.init({
         appId: "662650212194236",
         cookie: true,
@@ -66,12 +66,11 @@
       FB.login(
         function (response) {
           if (response.authResponse) {
-            localStorage.setItem("fbresponse", JSON.stringify(response.authResponse));
             const data = {
-              userId: response.authResponse.userID,
-              token: response.authResponse.accessToken,
-              uuid: JSON.parse(localStorage.getItem("usertoken")) && JSON.parse(localStorage.getItem("usertoken")),
-            };
+  userId: response.authResponse.userID,
+  token: response.authResponse.accessToken,
+  uuid: localStorage.getItem("usertoken") ? JSON.parse(localStorage.getItem("usertoken")) : "",
+};
             fetch("https://keys-wears.onrender.com/login", {
               method: "POST",
               headers: {
@@ -81,10 +80,10 @@
             })
               .then((response) => response.json())
               .then((data) => {
-                // Handle the response from the API if needed
-                console.log(data.message.usertoken)
+                console.log(data)
                 if (data.message === undefined) {
-                  window.location.href = `pages/${JSON.parse(localStorage.getItem("usertoken"))}/confirmpages`;
+                  const user = JSON.parse(localStorage.getItem("usertoken"))
+                  window.location.href = `pages/${user}/confirmpages`;
                 } else {
                   localStorage.setItem("usertoken", JSON.stringify(data.message.usertoken));
                   window.location.href = `pages/${data.message.usertoken}/confirmpages`;
