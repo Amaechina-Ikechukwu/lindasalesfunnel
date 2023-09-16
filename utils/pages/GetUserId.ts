@@ -48,5 +48,5 @@ export const GetUserId = cache(async (userid: string) => {
     // This will activate the closest `error.js` Error Boundary
     console.log({ error });
     // throw new Error('Failed to fetch data '+error);
-  }});
+  }d });
  

@@ -43,58 +43,34 @@
   <!-- JavaScript to handle Facebook login -->
   <script>
   window.fbAsyncInit = function () {
-      FB.init({
-        appId: "662650212194236",
-        cookie: true,
-        xfbml: true,
-        version: "v17.0",
-      });
-    };
-
-    // Load the SDK asynchronously
-    (function (d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, "script", "facebook-jssdk");
-
-    document.getElementById("fbLoginButton").addEventListener("click", () => {
-      FB.login(
-        function (response) {
-          if (response.authResponse) {
-            const data = {
-  userId: response.authResponse.userID,
-  token: response.authResponse.accessToken,
-  uuid: localStorage.getItem("usertoken") ? JSON.parse(localStorage.getItem("usertoken")) : "",
+  FB.init({
+    appId: "662650212194236",
+    cookie: true,
+    xfbml: true,
+    version: "v17.0",
+  });
 };
-            fetch("https://keys-wears.onrender.com/login", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data)
-                if (data.message === undefined) {
-                  const user = JSON.parse(localStorage.getItem("usertoken"))
-                  window.location.href = `pages/${user}/confirmpages`;
-                } else {
-                  localStorage.setItem("usertoken", JSON.stringify(data.message.usertoken));
-                  window.location.href = `pages/${data.message.usertoken}/confirmpages`;
-                }
-              })
-              .catch((error) => {
-                console.log("Error:", error);
-              });
+
+// Load the SDK asynchronously
+(function (d, s, id) {
+  var js,
+    fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "facebook-jssdk");
+
+document.getElementById("fbLoginButton").addEventListener("click", async () => {
+  try {
+    const response = await new Promise((resolve, reject) => {
+      FB.login(
+        (response) => {
+          if (response.authResponse) {
+            resolve(response);
           } else {
-            console.log("Login failed or user cancelled.");
-            // Handle the login failure or user cancellation here
+            reject("Login failed or user cancelled.");
           }
         },
         {
@@ -103,6 +79,48 @@
         }
       );
     });
-  </script>
+
+    const usertokenString = localStorage.getItem("usertoken");
+    let uuid = "";
+
+    if (usertokenString !== null && usertokenString !== "undefined") {
+      try {
+        uuid = JSON.parse(usertokenString);
+      } catch (error) {
+        console.error("Error parsing usertoken:", error);
+      }
+    }
+
+    const data = {
+      userId: response.authResponse.userID,
+      token: response.authResponse.accessToken,
+      uuid: uuid,
+    };
+
+    const fetchResponse = await fetch("https://keys-wears.onrender.com/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const responseData = await fetchResponse.json();
+
+    console.log(responseData);
+
+    if (responseData.message === "null") {
+      const user = JSON.parse(localStorage.getItem("usertoken"));
+      window.location.href = `pages/${user}/confirmpages`;
+    } else {
+      localStorage.setItem("usertoken", JSON.stringify(responseData.message.usertoken));
+      window.location.href = `pages/${responseData.message.usertoken}/confirmpages`;
+    }
+  } catch (error) {
+    console.log("Error:", error);
+    // Handle errors here
+  }
+});
+</script>
 </body>
 </html>
