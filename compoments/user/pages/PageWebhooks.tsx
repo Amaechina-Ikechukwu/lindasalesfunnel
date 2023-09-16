@@ -68,7 +68,7 @@ export default function PagesWebhooks({ userid }:any) {
               sx={{
                 padding: 4,
                 borderRadius: 5,
-                backgroundColor: colors.lightash,
+                backgroundColor: colors.lightash,gap:2
               }}
               key={d.id}
             >
@@ -90,7 +90,7 @@ export default function PagesWebhooks({ userid }:any) {
               sx={{
                 padding: 4,
                 borderRadius: 5,
-                backgroundColor: colors.lightash,
+                backgroundColor: colors.lightash,gap:4
               }}
               key={d.id}
             >
