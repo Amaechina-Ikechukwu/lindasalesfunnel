@@ -40,7 +40,8 @@ export default function PagesWebhooks({ userid }:any) {
         {
           event: "*", // You can add more events here, like "UPDATE" and "DELETE"
           schema: "public",
-          table: `userid_${userid}`,
+          table: `page_notifications`,
+          filter:`userid=${userid}`
         },(payload)=>{
           handleSubscription(payload)
           console.log("change recieved",payload.new)
