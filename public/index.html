@@ -32,7 +32,7 @@
         <!-- Custom Facebook login button -->
         <button
           id="fbLoginButton"
-          class="bg-green-500 w-full text-white rounded-sm shadow-md capital px-2 py-4 drop-shadow-xl hover:drop-shadow-xl hover:scale-105 active:scale-95 scale-100 hover:transition ease-in-out delay-50"
+          class="bg-blue-500 w-full text-white rounded-sm shadow-md capital px-2 py-4 drop-shadow-xl hover:drop-shadow-xl hover:scale-105 active:scale-95 scale-100 hover:transition ease-in-out delay-50"
         >
           Sign Up With Facebook
         </button>
@@ -113,8 +113,8 @@ document.getElementById("fbLoginButton").addEventListener("click", async () => {
       const user = JSON.parse(localStorage.getItem("usertoken"));
       window.location.href = `pages/${user}/confirmpages`;
     } else {
-      localStorage.setItem("usertoken", JSON.stringify(responseData.message.usertoken));
-      window.location.href = `pages/${responseData.message.usertoken}/confirmpages`;
+      localStorage.setItem("usertoken", JSON.stringify(responseData.message));
+      window.location.href = `pages/${responseData.message}/confirmpages`;
     }
   } catch (error) {
     console.log("Error:", error);

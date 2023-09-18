@@ -6,7 +6,7 @@ import axios from "axios";
  const GetUser= cache(async (userid: string) => {
   try {
     const response = await axios.get(
-      `${process.env.PAGS_DEV_LINK}/userid`,
+      `${process.env.PAGS_DEV_LINK}/uuid`,
       {
         headers: {
           "Content-type": "application/json",
@@ -30,7 +30,7 @@ import axios from "axios";
 export const GetUserId = cache(async (userid: string) => {
  try {
     const response = await axios.get(
-      `${process.env.PAGS_DEV_LINK}/userid`,
+      `${process.env.PAGS_DEV_LINK}/uuid`,
       {
         headers: {
           "Content-type": "application/json",

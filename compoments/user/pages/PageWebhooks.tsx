@@ -11,7 +11,9 @@ export default function PagesWebhooks({ userid }:any) {
   // Function to fetch initial data
   const fetchInitialData = async () => {
     try {
-      const { data, error } = await supabase.from(`userid_${userid}`).select();
+      const { data, error } = await supabase.from("page_notifications")
+      .select("*")
+      .eq("userid", userid);
       if (error) {
         console.error("Error fetching data:", error);
       } else if (data && Array.isArray(data)) {
@@ -41,7 +43,7 @@ export default function PagesWebhooks({ userid }:any) {
           event: "*", // You can add more events here, like "UPDATE" and "DELETE"
           schema: "public",
           table: `page_notifications`,
-          filter:`userid=${userid}`
+          filter:"userid=eq."+userid
         },(payload)=>{
           handleSubscription(payload)
           console.log("change recieved",payload.new)
@@ -61,55 +63,58 @@ export default function PagesWebhooks({ userid }:any) {
   // }, [data]);
 
   return (
-    <Stack sx={{display:"flex", flexDirection:'column-reverse'}} spacing={2}>
-      {data.map((d:any) => {
-        if (d.verb === "remove") {
-          return (
-            <Stack
-              sx={{
-                padding: 4,
-                borderRadius: 5,
-                backgroundColor: colors.lightash,gap:2
-              }}
-              key={d.id}
-            >
-              <Text text={d.id} />
-              {d.item !== null ? (
-                <Box>
-                  <Text text={` ${d.from_name} deleted ${d.item}`} />
-                </Box>
-              ) : (
-                <Box>
-                  <Text text={`${d.from_name} deleted ${d.reaction_type}`} />
-                </Box>
-              )}
-            </Stack>
-          );
-        } else {
-          return (
-            <Stack
-              sx={{
-                padding: 4,
-                borderRadius: 5,
-                backgroundColor: colors.lightash,gap:4
-              }}
-              key={d.id}
-            >
-              <Text text={d.id} />
-              {d.item !== null ? (
-                <Box sx={{display:'flex',flexDirection:'column',gap:1}}>
-                  <Text text={`New ${d.item} from ${d.from_name}`} />
-                  <Text text={d.message} />
-                </Box>
-              ) : (
-                <Box>
-                  <Text text={`New ${d.reaction_type} from ${d.from_name}`} />
-                </Box>
-              )}
-            </Stack>
-          );
-        }
-      })}
-    </Stack>
+ <Stack sx={{ display: "flex", flexDirection: 'column-reverse', gap: 2 }}>
+  {data.map((d: any) => {
+    if (d.verb === "remove") {
+      return (
+        <Stack
+          sx={{
+            padding: 4,
+            borderRadius: 5,
+            backgroundColor: colors.lightash,
+            gap: 2,
+          }}
+          key={d.id}
+        >
+          <Text text={`Page: ${d.pagename}`} />
+          {d.item !== null ? (
+            <Box>
+              <Text text={` ${d.from_name} deleted ${d.item}`} />
+            </Box>
+          ) : (
+            <Box>
+              <Text text={`${d.from_name} deleted ${d.reaction_type}`} />
+            </Box>
+          )}
+        </Stack>
+      );
+    } else {
+      return (
+        <Stack
+          sx={{
+            padding: 4,
+            borderRadius: 5,
+            backgroundColor: colors.lightash,
+            gap: 4,
+          }}
+          key={d.id}
+        >
+          <Text text={`Page: ${d.pagename}`} />
+          {d.item !== null ? (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <Text text={`New ${d.item} from ${d.from_name}`} />
+              <Text text={d.message} />
+            </Box>
+          ) : (
+            <Box>
+              <Text text={`New ${d.reaction_type} from ${d.from_name}`} />
+            </Box>
+          )}
+        </Stack>
+      );
+    }
+  })}
+</Stack>
+
   );
 }
