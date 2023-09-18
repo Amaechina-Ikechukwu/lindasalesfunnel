@@ -28,7 +28,7 @@ export default async function Pages({ params }: { params: { userid: string } }) 
     <div className='space-y-12 '>
 
 <div className='p-6 rounded-md bg-sky-50 flex flex-row space-x-6 items-center'>
-<Image src={userinfo.picture.data.url} height={50} width={50} className='rounded-full' />
+<Image src={userinfo.picture.data.url} alt={`${userinfo.name}in LindaSalesPro`} height={50} width={50} className='rounded-full' />
 <p className='text-xl text-zinc-500 font-bold'>{userinfo.name}</p></div>
      
       <div ><PageWebhooks userid={userid} /></div></div>
